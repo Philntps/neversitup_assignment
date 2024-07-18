@@ -1,31 +1,29 @@
-package com.example.myapplication.domain.usecase
+package com.example.myapplication.domain.usecase.product
 
 import android.util.Log
+import com.example.myapplication.domain.repository.DepartmentRepository
+import com.example.myapplication.common.ApiResponse
+import com.example.myapplication.data.model.Product
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
-import com.example.myapplication.model.remote.model.GetCoins
-import com.example.myapplication.domain.repository.CoinRepository
-import com.example.myapplication.domain.services.ApiResponse
 import java.io.IOException
 import javax.inject.Inject
 
-class GetCoinsUseCase @Inject constructor(
-    private val coinRepository: CoinRepository
+class GetProductListUseCase @Inject constructor(
+    private val departmentRepository: DepartmentRepository
 ) {
     companion object {
         const val TAG = "GetCoinsUseCase"
     }
 
     operator fun invoke(
-        search: String = "",
-        offset: Int = 0,
-        limit: Int = 20
-    ): Flow<ApiResponse<GetCoins>> = flow {
+        departmentId: String
+    ): Flow<ApiResponse<List<Product>>> = flow {
         try {
             emit(ApiResponse.Loading())
-            val res = coinRepository.getCoins(search, offset, limit)
+            val res = departmentRepository.getProducts(departmentId)
             Log.d(TAG, res.toString())
             emit(ApiResponse.Success(res))
         } catch (e: HttpException) {

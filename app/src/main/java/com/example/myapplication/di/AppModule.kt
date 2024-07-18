@@ -10,9 +10,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.example.myapplication.model.repository.CoinRepositoryImpl
-import com.example.myapplication.domain.services.ApiService
-import com.example.myapplication.domain.repository.CoinRepository
+import com.example.myapplication.data.repository.DepartmentRepositoryImpl
+import com.example.myapplication.data.service.ApiService
+import com.example.myapplication.domain.repository.DepartmentRepository
 import javax.inject.Singleton
 
 @Module
@@ -28,10 +28,7 @@ class AppModule {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
                 chain.proceed(
-                    chain.request().newBuilder()
-                        .also {
-                            it.addHeader("access-token", BuildConfig.API_KEY)
-                        }.build()
+                    chain.request().newBuilder().build()
 
                 )
             }
@@ -53,7 +50,7 @@ class AppModule {
         return Retrofit.Builder()
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("https://api.coinranking.com/v2/") // Default URL
+            .baseUrl("https://659f86b15023b02bfe89c737.mockapi.io") // Default URL
             .build()
     }
 
@@ -66,7 +63,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideCoinRepository(apiService: ApiService): CoinRepository {
-        return CoinRepositoryImpl(apiService)
+    fun provideDepartmentRepository(apiService: ApiService): DepartmentRepository {
+        return DepartmentRepositoryImpl(apiService)
     }
 }

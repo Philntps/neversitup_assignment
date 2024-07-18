@@ -1,9 +1,9 @@
-package com.example.myapplication.domain.usecase
+package com.example.myapplication.domain.usecase.department
 
 import android.util.Log
-import com.example.myapplication.model.remote.model.Coin
-import com.example.myapplication.domain.repository.CoinRepository
-import com.example.myapplication.domain.services.ApiResponse
+import com.example.myapplication.common.ApiResponse
+import com.example.myapplication.domain.repository.DepartmentRepository
+import com.example.myapplication.data.model.Department
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -11,18 +11,17 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetCoinDetailUseCase @Inject constructor(
-    private val coinRepository: CoinRepository
+class GetDepartmentListUseCase @Inject constructor(
+    private val departmentRepository: DepartmentRepository
 ) {
     companion object {
         const val TAG = "GetCoinsUseCase"
     }
 
-    operator fun invoke(udid:String
-    ): Flow<ApiResponse<Coin>> = flow {
+    operator fun invoke(): Flow<ApiResponse<List<Department>>> = flow {
         try {
             emit(ApiResponse.Loading())
-            val res = coinRepository.getCoinByUdid(udid)
+            val res = departmentRepository.getDepartmentList()
             Log.d(TAG, res.toString())
             emit(ApiResponse.Success(res))
         } catch (e: HttpException) {

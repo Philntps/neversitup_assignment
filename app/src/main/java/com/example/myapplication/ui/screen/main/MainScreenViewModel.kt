@@ -1,101 +1,61 @@
 package com.example.myapplication.ui.screen.main
 
-import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.util.query
-import com.example.myapplication.domain.services.ApiResponse
+import com.example.myapplication.common.ApiResponse
+import com.example.myapplication.domain.usecase.department.GetDepartmentListUseCase
+import com.example.myapplication.domain.usecase.product.GetProductListUseCase
+import com.example.myapplication.data.model.Department
+import com.example.myapplication.data.model.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import com.example.myapplication.domain.usecase.GetCoinsUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
 import javax.inject.Inject
-import kotlin.time.Duration.Companion.seconds
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val getCoinsUseCase: GetCoinsUseCase
+    private val getDepartmentListUseCase: GetDepartmentListUseCase,
+    private val getProductListUseCase: GetProductListUseCase
 ) : ViewModel() {
-    private val _state = MutableStateFlow(MainUiState())
-    val state: StateFlow<MainUiState> = _state
+    private val _departmentState =
+        MutableStateFlow<ApiResponse<List<Department>>>(ApiResponse.Loading())
+    val departmentState: StateFlow<ApiResponse<List<Department>>> = _departmentState
 
-    private val _searchQuery = MutableStateFlow("")
-    val searchQuery: StateFlow<String> get() = _searchQuery
+    private val _productUiState = MutableStateFlow(ProductUiState())
+    val productUiState: StateFlow<ProductUiState> = _productUiState
 
-    private var offset = 0
-    private var limit = 20
+    private val coroutineScope = viewModelScope
+
 
     init {
-        observeSearchQuery()
-        startRepeatFetchData()
+        getDepartmentList()
     }
 
-    private fun startRepeatFetchData(){
-        viewModelScope.launch(Dispatchers.IO) {
-            while (true) {
-                val search = searchQuery.value
-                if (search.isEmpty()) {
-                    fetchData()
-                }
-                delay(10.seconds)
+    fun getDepartmentList() {
+        coroutineScope.launch(Dispatchers.IO) {
+            getDepartmentListUseCase.invoke().collect { res ->
+                _departmentState.value = res
             }
         }
     }
 
-    fun fetchData(query: String="") {
-        viewModelScope.launch(Dispatchers.IO) {
-            getCoinsUseCase.invoke(query, offset, limit)
-                .collect { res ->
-                    when (res) {
-                        is ApiResponse.Error -> {
-                            _state.value = state.value.copy(
-                                coinsState = res
-                            )
-                        }
-
-                        is ApiResponse.Loading -> {
-                            _state.value = state.value.copy(
-                                coinsState = res
-                            )
-                        }
-
-                        is ApiResponse.Success -> {
-                            _state.value = state.value.copy(
-                                coins = res.data!!.coins,
-                                coinsState = res
-                            )
-                        }
-                    }
-                }
+    private fun getProductList(departmentId:String) {
+        coroutineScope.launch(Dispatchers.IO) {
+            getProductListUseCase.invoke(departmentId).collect { res ->
+                _productUiState.value = productUiState.value.copy(productState = res)
+            }
         }
     }
 
-    fun loadMore() {
-        limit += 20
-        fetchData()
+    fun onSelectDepartment(department: Department){
+        _productUiState.value = productUiState.value.copy(department)
+        getProductList(department.id)
     }
-
-    fun search(query: String) {
-        limit = 20
-        _state.value = state.value.copy(coins = emptyList())
-        _searchQuery.value = query
-    }
-
-    private fun observeSearchQuery() {
-        viewModelScope.launch {
-            _searchQuery
-                .debounce(500) // Adjust debounce period as needed
-                .distinctUntilChanged()
-                .collect { query ->
-                    fetchData(query)
-                }
-        }
-    }
-
-
 }
+
+

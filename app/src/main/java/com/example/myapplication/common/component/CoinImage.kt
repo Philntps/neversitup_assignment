@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.screen.component
+package com.example.myapplication.common.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -13,6 +13,7 @@ import coil.ComponentRegistry
 import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.SvgDecoder
+import coil.request.CachePolicy
 import coil.request.ImageRequest
 
 @Composable
@@ -35,6 +36,6 @@ fun CoinImage(imageUrl: String?, modifier: Modifier = Modifier) {
         painter = painter,
         contentDescription = "",
         modifier = modifier.background(color = Color.LightGray),
-        contentScale = ContentScale.FillBounds,
+        contentScale = ContentScale.Crop,
     )
 }
