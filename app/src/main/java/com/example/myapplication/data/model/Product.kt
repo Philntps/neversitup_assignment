@@ -10,7 +10,7 @@ data class Product(
     val type: String
 )
 
-fun MockProduct(): Product {
+fun mockProduct(): Product {
     return Product(
         departmentId = "1",
         desc = "desc",

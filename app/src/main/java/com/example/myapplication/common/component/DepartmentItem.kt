@@ -22,11 +22,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.data.model.Department
-import com.example.myapplication.data.model.MockDepartment
+import com.example.myapplication.data.model.mockDepartment
 
 @Preview
 @Composable
-fun DepartmentItem(department: Department = MockDepartment(), onClick: () -> Unit = {}) {
+fun DepartmentItem(department: Department = mockDepartment(), onClick: () -> Unit = {}) {
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp

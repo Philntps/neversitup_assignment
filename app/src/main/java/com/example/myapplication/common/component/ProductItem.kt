@@ -14,12 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.myapplication.data.model.MockProduct
+import com.example.myapplication.data.model.mockProduct
 import com.example.myapplication.data.model.Product
 
 @Preview
 @Composable
-fun ProductItem(product: Product = MockProduct(), onClick: () -> Unit = {}) {
+fun ProductItem(product: Product = mockProduct(), onClick: () -> Unit = {}) {
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp

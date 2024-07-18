@@ -20,12 +20,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.example.myapplication.data.model.MockProduct
+import com.example.myapplication.data.model.mockProduct
 import com.example.myapplication.data.model.Product
 
 @Preview(showBackground = true)
 @Composable
-fun ProductDescriptionDialog(product: Product = MockProduct(), onDismissRequest: () -> Unit = {}) {
+fun ProductDescriptionDialog(product: Product = mockProduct(), onDismissRequest: () -> Unit = {}) {
     Dialog(onDismissRequest = onDismissRequest,
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {

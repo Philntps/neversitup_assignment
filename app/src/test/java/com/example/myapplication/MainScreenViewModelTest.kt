@@ -6,8 +6,8 @@ import com.example.myapplication.common.ApiResponse
 import com.example.myapplication.domain.usecase.department.GetDepartmentListUseCase
 import com.example.myapplication.domain.usecase.product.GetProductListUseCase
 import com.example.myapplication.data.model.Department
-import com.example.myapplication.data.model.MockDepartment
-import com.example.myapplication.data.model.MockProduct
+import com.example.myapplication.data.model.mockDepartment
+import com.example.myapplication.data.model.mockProduct
 import com.example.myapplication.ui.screen.main.MainScreenViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -53,7 +53,7 @@ class MainScreenViewModelTest {
     @Test
     fun `call getDepartmentList then return success response and set departListState`() = runTest {
         //Arrange
-        val mockDepartments = List(12) { MockDepartment() }
+        val mockDepartments = List(12) { mockDepartment() }
         coEvery { getDepartmentListUseCase.invoke() } returns flow {
             emit(
                 ApiResponse.Success(data = mockDepartments)
@@ -75,7 +75,7 @@ class MainScreenViewModelTest {
     fun `call onSelectDepartment then return success response and set productUiState`() = runTest {
         //Arrange
         val mockDepartment = Department("1","url","name")
-        val mockProducts = List(10) { MockProduct() }
+        val mockProducts = List(10) { mockProduct() }
         coEvery { getProductListUseCase.invoke(mockDepartment.id) } returns flow {
             emit(
                 ApiResponse.Success(data = mockProducts)

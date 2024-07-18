@@ -15,7 +15,7 @@ class GetDepartmentListUseCase @Inject constructor(
     private val departmentRepository: DepartmentRepository
 ) {
     companion object {
-        const val TAG = "GetCoinsUseCase"
+        const val TAG = "GetDepartmentListUseCase"
     }
 
     operator fun invoke(): Flow<ApiResponse<List<Department>>> = flow {

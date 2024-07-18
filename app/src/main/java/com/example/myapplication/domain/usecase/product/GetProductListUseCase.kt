@@ -15,7 +15,7 @@ class GetProductListUseCase @Inject constructor(
     private val departmentRepository: DepartmentRepository
 ) {
     companion object {
-        const val TAG = "GetCoinsUseCase"
+        const val TAG = "GetProductListUseCase"
     }
 
     operator fun invoke(

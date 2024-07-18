@@ -6,7 +6,7 @@ data class Department(
     val name: String
 )
 
-fun MockDepartment(): Department {
+fun mockDepartment(): Department {
     return Department(
         id="1",
         imageUrl="",

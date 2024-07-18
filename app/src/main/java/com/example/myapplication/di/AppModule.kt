@@ -1,6 +1,7 @@
 package com.example.myapplication.di
 
 import com.example.myapplication.BuildConfig
+import com.example.myapplication.config.Constants
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -22,7 +23,7 @@ class AppModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
-        val loggingInterceptor = HttpLoggingInterceptor().apply {
+        HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
         return OkHttpClient.Builder()
@@ -50,7 +51,7 @@ class AppModule {
         return Retrofit.Builder()
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("https://659f86b15023b02bfe89c737.mockapi.io") // Default URL
+            .baseUrl(Constants.BASE_URL) // Default URL
             .build()
     }
 
