@@ -1,7 +1,6 @@
-package com.example.myapplication.core
+package com.example.myapplication.common
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.ui.graphics.Color
 
 fun colorStringToColor(colorString: String?): Color {

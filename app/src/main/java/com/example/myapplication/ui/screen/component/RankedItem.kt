@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myapplication.data.remote.model.Coin
+import com.example.myapplication.model.remote.model.Coin
 
 @Preview
 @Composable
@@ -47,7 +47,7 @@ fun RankedItem(
     ) {
         Box(modifier = Modifier.fillMaxSize(), Alignment.Center) {
             Column(Modifier.fillMaxSize(), Arrangement.Center, Alignment.CenterHorizontally) {
-                CoinImage(coin.iconUrl,"logo", Modifier.size(40.dp))
+//                CoinImage(coin.iconUrl,"logo", Modifier.size(40.dp))
                 Text(text = coin.symbol, fontSize = 14.sp, fontWeight = FontWeight.Bold)
                 Text(text = coin.name, fontSize = 12.sp, color = Color(0xFF999999), softWrap = true)
                 if(coin.change != null) {

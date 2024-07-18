@@ -1,6 +1,6 @@
-package com.example.myapplication.data.remote.model
+package com.example.myapplication.model.remote.model
 
-import com.example.myapplication.data.remote.dto.StatsDto
+import com.example.myapplication.model.remote.dto.StatsDto
 
 data class Stats(
     val total: Int,

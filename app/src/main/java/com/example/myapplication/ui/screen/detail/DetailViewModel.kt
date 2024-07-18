@@ -2,11 +2,9 @@ package com.example.myapplication.ui.screen.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.data.remote.model.Coin
+import com.example.myapplication.model.remote.model.Coin
 import com.example.myapplication.domain.services.ApiResponse
 import com.example.myapplication.domain.usecase.GetCoinDetailUseCase
-import com.example.myapplication.domain.usecase.GetCoinsUseCase
-import com.example.myapplication.ui.screen.main.MainUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

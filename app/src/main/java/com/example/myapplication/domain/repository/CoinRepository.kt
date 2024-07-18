@@ -1,7 +1,7 @@
 package com.example.myapplication.domain.repository
 
-import com.example.myapplication.data.remote.model.Coin
-import com.example.myapplication.data.remote.model.GetCoins
+import com.example.myapplication.model.remote.model.Coin
+import com.example.myapplication.model.remote.model.GetCoins
 import retrofit2.http.Path
 import retrofit2.http.Query
 

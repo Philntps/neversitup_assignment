@@ -1,8 +1,8 @@
 package com.example.myapplication.domain.services
 
-import com.example.myapplication.data.remote.dto.GetCoinByUdidDto
-import com.example.myapplication.data.remote.dto.GetCoinsDto
-import com.example.myapplication.data.remote.model.Response
+import com.example.myapplication.model.remote.dto.GetCoinByUdidDto
+import com.example.myapplication.model.remote.dto.GetCoinsDto
+import com.example.myapplication.model.remote.model.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

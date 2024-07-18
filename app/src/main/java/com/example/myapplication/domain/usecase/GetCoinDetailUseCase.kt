@@ -1,8 +1,7 @@
 package com.example.myapplication.domain.usecase
 
 import android.util.Log
-import com.example.myapplication.data.remote.model.Coin
-import com.example.myapplication.data.remote.model.GetCoins
+import com.example.myapplication.model.remote.model.Coin
 import com.example.myapplication.domain.repository.CoinRepository
 import com.example.myapplication.domain.services.ApiResponse
 import kotlinx.coroutines.flow.Flow

@@ -1,24 +1,19 @@
 package com.example.myapplication
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import android.util.Log
 import app.cash.turbine.test
-import com.example.myapplication.data.remote.model.Coin
-import com.example.myapplication.data.remote.model.GetCoins
-import com.example.myapplication.data.remote.model.Stats
+import com.example.myapplication.model.remote.model.Coin
+import com.example.myapplication.model.remote.model.GetCoins
+import com.example.myapplication.model.remote.model.Stats
 import com.example.myapplication.domain.services.ApiResponse
 import com.example.myapplication.domain.usecase.GetCoinsUseCase
 import com.example.myapplication.ui.screen.main.MainScreenViewModel
-import com.example.myapplication.ui.screen.main.MainUiState
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Assert.assertEquals

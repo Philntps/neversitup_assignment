@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,18 +25,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.myapplication.core.colorStringToColor
-import com.example.myapplication.core.formatMarketCap
-import com.example.myapplication.data.remote.model.Coin
+import com.example.myapplication.common.colorStringToColor
+import com.example.myapplication.common.formatMarketCap
+import com.example.myapplication.model.remote.model.Coin
 import com.example.myapplication.domain.services.ApiResponse
-import com.example.myapplication.ui.screen.component.ChangeIndicator
 import com.example.myapplication.ui.screen.component.CoinImage
 
 @SuppressLint("DefaultLocale")
@@ -129,22 +126,24 @@ fun DetailModalSheetPreview(
                                 Arrangement.SpaceEvenly,
                                 Alignment.CenterVertically
                             ) {
-                                CoinImage(state.data!!.iconUrl, "logo", Modifier.size(50.dp))
+//                                CoinImage(state.data!!.iconUrl, "logo", Modifier.size(50.dp))
                                 Column(
                                     Modifier
                                         .weight(1f)
                                         .padding(horizontal = 12.dp)
                                 ) {
                                     Row(Modifier, Arrangement.spacedBy(4.dp)) {
+                                        state.data?.let {
+                                            Text(
+                                                text = it.name,
+                                                fontSize = 18.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                maxLines = 1,
+                                                color = colorStringToColor(state.data.color)
+                                            )
+                                        }
                                         Text(
-                                            text = state.data.name,
-                                            fontSize = 18.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            maxLines = 1,
-                                            color = colorStringToColor(state.data.color)
-                                        )
-                                        Text(
-                                            text = "(${state.data.symbol})",
+                                            text = "(${state.data?.symbol})",
                                             fontSize = 16.sp,
                                             color = MaterialTheme.colorScheme.onBackground,
                                             softWrap = true

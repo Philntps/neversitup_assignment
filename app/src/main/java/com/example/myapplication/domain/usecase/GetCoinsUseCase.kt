@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
-import com.example.myapplication.data.remote.model.GetCoins
+import com.example.myapplication.model.remote.model.GetCoins
 import com.example.myapplication.domain.repository.CoinRepository
 import com.example.myapplication.domain.services.ApiResponse
 import java.io.IOException

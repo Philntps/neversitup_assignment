@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.ComponentRegistry
@@ -15,7 +16,7 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 
 @Composable
-fun CoinImage(imageUrl: String, description: String, modifier: Modifier = Modifier) {
+fun CoinImage(imageUrl: String?, modifier: Modifier = Modifier) {
     val imageLoader = ImageLoader.Builder(LocalContext.current)
         .components {
             add(SvgDecoder.Factory())
@@ -32,8 +33,8 @@ fun CoinImage(imageUrl: String, description: String, modifier: Modifier = Modifi
 
     Image(
         painter = painter,
-        contentDescription = description,
-        modifier = modifier
-            .size(40.dp)
+        contentDescription = "",
+        modifier = modifier.background(color = Color.LightGray),
+        contentScale = ContentScale.FillBounds,
     )
 }

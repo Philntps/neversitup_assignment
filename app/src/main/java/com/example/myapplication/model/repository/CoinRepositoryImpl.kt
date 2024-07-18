@@ -1,10 +1,10 @@
-package com.example.myapplication.data.repository
+package com.example.myapplication.model.repository
 
 import android.util.Log
-import com.example.myapplication.data.remote.model.Coin
-import com.example.myapplication.data.remote.model.GetCoins
-import com.example.myapplication.data.remote.model.toCoin
-import com.example.myapplication.data.remote.model.toGetCoins
+import com.example.myapplication.model.remote.model.Coin
+import com.example.myapplication.model.remote.model.GetCoins
+import com.example.myapplication.model.remote.model.toCoin
+import com.example.myapplication.model.remote.model.toGetCoins
 import com.example.myapplication.domain.services.ApiService
 import com.example.myapplication.domain.repository.CoinRepository
 import javax.inject.Inject

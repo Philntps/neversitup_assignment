@@ -10,7 +10,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.example.myapplication.data.repository.CoinRepositoryImpl
+import com.example.myapplication.model.repository.CoinRepositoryImpl
 import com.example.myapplication.domain.services.ApiService
 import com.example.myapplication.domain.repository.CoinRepository
 import javax.inject.Singleton

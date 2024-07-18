@@ -1,6 +1,6 @@
-package com.example.myapplication.data.remote.model
+package com.example.myapplication.model.remote.model
 
-import com.example.myapplication.data.remote.dto.CoinDto
+import com.example.myapplication.model.remote.dto.CoinDto
 
 data class Coin(
     val change: String?=null,

@@ -1,4 +1,4 @@
-package com.example.myapplication.data.remote.model
+package com.example.myapplication.model.remote.model
 
 import com.example.myapplication.domain.remote.model.Response
 
